@@ -1,11 +1,13 @@
 package com.nebraska.hello_world.controllers
 
 import com.nebraska.hello_world.entities.InvestmentProduct
+import com.nebraska.hello_world.entities.ProductStatus
 import com.nebraska.hello_world.repositories.ProductsRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import java.math.BigDecimal
 
 
 @Controller
@@ -16,20 +18,26 @@ class ProductsController(
 
     @GetMapping(value = ["/", ""])
     fun index(model: Model): String {
-        model.addAttribute(
-            "products", listOf(
-                InvestmentProduct(name = "Produto A"),
-                InvestmentProduct(name = "Produto B"),
-                InvestmentProduct(name = "Produto C")
-            )
-        )
+        val products = repository.findAll()
+
+        model.addAttribute("products", products)
         return "products/products_list"
     }
 
-    @GetMapping("/empty")
-    fun empty(model: Model): String {
-        model.addAttribute("products", listOf<InvestmentProduct>())
-        return "products/layout"
+    @GetMapping("/create")
+    fun createNew(model: Model): String {
+        repository.save(
+            InvestmentProduct(
+                id = null,
+                name = "Produto a bla bleh",
+                status = ProductStatus.available,
+                destination = "Destinação massa",
+                anualRentability = BigDecimal(0.13),
+                minimalMonths = 4,
+                administrativeTaxes = BigDecimal(0.01)
+            )
+        )
+        return "redirect:/products"
     }
 
 }

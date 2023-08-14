@@ -16,7 +16,7 @@ import java.math.BigDecimal
 class InvestmentProduct(
     @Id
     @GeneratedValue
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @Column(nullable = false)
     val name: String = "",

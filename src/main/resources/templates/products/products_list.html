@@ -13,7 +13,13 @@
     <div id="products-list">
         <h3><span th:text="${#lists.size(products)}"> produtos</span></h3>
         <div th:each="product : ${products}">
+            <p th:text="${product.id}">A</p>
             <p th:text="${product.name}">A</p>
+            <p th:text="${product.status}">A</p>
+            <p th:text="${product.destination}">A</p>
+            <p th:text="${product.anualRentability}">A</p>
+            <p th:text="${product.minimalMonths}">A</p>
+            <p th:text="${product.administrativeTaxes}">A</p>
         </div>
     </div>
 </div>
