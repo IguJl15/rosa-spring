@@ -13,7 +13,7 @@ import java.math.BigDecimal
 /// Prazo mínimo para Realização (meses): 0 a 48 meses, qualquer valor.
 /// Taxa de Administração (%): Quanto do ganho a ROSA fica? 
 @Entity()
-data class InvestmentProduct(
+class InvestmentProduct(
     @Id
     @GeneratedValue
     private val id: Long? = null,
