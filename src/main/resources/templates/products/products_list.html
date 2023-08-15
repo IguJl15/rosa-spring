@@ -18,26 +18,26 @@
             <div class="d-flex flex-row">
                 <fieldset class="form-group column w-50 mx-2">
                     <div class="py-1">
-                        <label>Nome</label>
+                        <label for="product_name">Nome</label>
                         <input id="product_name" class="form-control" type="text" placeholder="CDB Pós fixado"
                                th:field="*{name}"/>
                     </div>
                     <div class="py-1">
-                        <label>Destinação</label>
+                        <label for="destination">Destinação</label>
                         <input id="destination" class="form-control" type="text" th:field="*{destination}"/>
                     </div>
                 </fieldset>
                 <fieldset class="form-group column w-50 mx-2">
                     <div class="py-1">
-                        <label>Rentabilidade anual (%)</label>
+                        <label for="rentability">Rentabilidade anual (%)</label>
                         <input id="rentability" class="form-control" type="number" th:field="*{anualRentability}"/>
                     </div>
                     <div class="py-1">
-                        <label>Período minimo de investimento (meses)</label>
+                        <label for="months">Período minimo de investimento (meses)</label>
                         <input id="months" class="form-control" type="number" th:field="*{minimalMonths}"/>
                     </div>
                     <div class="py-1">
-                        <label>Taxa administrativa (%)</label>
+                        <label for="taxes">Taxa administrativa (%)</label>
                         <input id="taxes" class="form-control" type="number" th:field="*{administrativeTaxes}"/>
                     </div>
                 </fieldset>
