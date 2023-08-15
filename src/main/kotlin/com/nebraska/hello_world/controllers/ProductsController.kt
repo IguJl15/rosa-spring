@@ -6,6 +6,8 @@ import com.nebraska.hello_world.repositories.ProductsRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import java.math.BigDecimal
 
@@ -21,7 +23,16 @@ class ProductsController(
         val products = repository.findAll()
 
         model.addAttribute("products", products)
+        model.addAttribute("newProduct", InvestmentProduct())
+
         return "products/products_list"
+    }
+
+    @PostMapping(value = ["/", ""])
+    fun new(@ModelAttribute newProduct: InvestmentProduct): String {
+        repository.save(newProduct);
+
+        return "redirect:/products/"
     }
 
     @GetMapping("/create")
