@@ -67,9 +67,11 @@
                 <td th:text="${product.name}">A</td>
                 <td th:text="${product.status}">A</td>
                 <td th:text="${product.destination}">A</td>
-                <td th:text="${product.anualRentability}">A</td>
-                <td th:text="${product.minimalMonths}">A</td>
-                <td th:text="${product.administrativeTaxes}">A</td>
+                <td th:with="anualRent=${#numbers.formatDecimal(product.anualRentability * 100, 1, 'POINT', 2, 'COMMA')}"
+                    th:text="${#strings.concat(anualRent, ' %')}">A</td>
+                <td th:text="${#strings.concat(product.minimalMonths, ' meses')}">A</td>
+                <td th:with="adminTaxes=${#numbers.formatDecimal(product.administrativeTaxes * 100, 1, 'POINT', 2, 'COMMA')}"
+                    th:text="${#strings.concat(adminTaxes, ' %')}">A</td>
             </tr>
             </tbody>
         </table>

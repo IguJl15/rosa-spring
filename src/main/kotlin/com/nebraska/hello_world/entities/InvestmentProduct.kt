@@ -4,7 +4,6 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
-import java.math.BigDecimal
 
 
 /// Nome até 32 caracteres    | 	Status: 'Disponível' ou 'Indisponível'
@@ -13,7 +12,7 @@ import java.math.BigDecimal
 /// Prazo mínimo para Realização (meses): 0 a 48 meses, qualquer valor.
 /// Taxa de Administração (%): Quanto do ganho a ROSA fica? 
 @Entity()
-class InvestmentProduct(
+data class InvestmentProduct(
     @Id
     @GeneratedValue
     val id: Long? = null,
@@ -28,13 +27,13 @@ class InvestmentProduct(
     val destination: String = "",
 
     @Column(nullable = false)
-    val anualRentability: BigDecimal = BigDecimal(0),
+    val anualRentability: Double = 0.0,
 
     @Column(nullable = true)
     val minimalMonths: Int? = null,
 
     @Column(nullable = false)
-    val administrativeTaxes: BigDecimal = BigDecimal(0),
+    val administrativeTaxes: Double = 0.0,
 )
 
 enum class ProductStatus {
