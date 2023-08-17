@@ -7,74 +7,49 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Document</title>
 </head>
-<body>
-<header th:replace="~{base_layout :: base_header(Foo)}"></header>
-<div th:insert="~{base_layout :: content(~{ :: #new-product-form}) }">
-    <div id="new-product-form" class="py-4">
+<body class="has-background-light">
+<header th:replace="~{base_layout :: base_header}">
 
-        <h3 class="h3">Criar novo Produto</h3>
+</header>
 
-        <form class="form-inline w-75" th:action="@{/products/}" th:object="${newProduct}" method="post">
-            <div class="d-flex flex-row">
-                <fieldset class="form-group column w-50 mx-2">
-                    <div class="py-1">
-                        <label for="product_name">Nome</label>
-                        <input id="product_name" class="form-control" type="text" placeholder="CDB Pós fixado"
-                               th:field="*{name}"/>
-                    </div>
-                    <div class="py-1">
-                        <label for="destination">Destinação</label>
-                        <input id="destination" class="form-control" type="text" th:field="*{destination}"/>
-                    </div>
-                </fieldset>
-                <fieldset class="form-group column w-50 mx-2">
-                    <div class="py-1">
-                        <label for="rentability">Rentabilidade anual (%)</label>
-                        <input id="rentability" class="form-control" type="number" th:field="*{anualRentability}"/>
-                    </div>
-                    <div class="py-1">
-                        <label for="months">Período minimo de investimento (meses)</label>
-                        <input id="months" class="form-control" type="number" th:field="*{minimalMonths}"/>
-                    </div>
-                    <div class="py-1">
-                        <label for="taxes">Taxa administrativa (%)</label>
-                        <input id="taxes" class="form-control" type="number" th:field="*{administrativeTaxes}"/>
-                    </div>
-                </fieldset>
-            </div>
-            <button class="btn btn-outline-success" type="submit">Enviar</button>
-        </form>
-    </div>
-</div>
 <div th:insert="~{base_layout :: content(~{ :: #products-list}) }">
-    <div class="flex-box flex-content" id="products-list">
-        <h4 class="h4"><span th:text="${#strings.concat(#lists.size(products), ' produtos')}"></span></h4>
-        <table class="table table-striped">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Destinação</th>
-                <th scope="col">Rent. Anual</th>
-                <th scope="col">Período mínimo</th>
-                <th scope="col">Taxa Admin</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="product : ${products}">
-                <th scope="row" th:text="${product.id}">A</th>
-                <td th:text="${product.name}">A</td>
-                <td th:text="${product.status}">A</td>
-                <td th:text="${product.destination}">A</td>
-                <td th:with="anualRent=${#numbers.formatDecimal(product.anualRentability * 100, 1, 'POINT', 2, 'COMMA')}"
-                    th:text="${#strings.concat(anualRent, ' %')}">A</td>
-                <td th:text="${#strings.concat(product.minimalMonths, ' meses')}">A</td>
-                <td th:with="adminTaxes=${#numbers.formatDecimal(product.administrativeTaxes * 100, 1, 'POINT', 2, 'COMMA')}"
-                    th:text="${#strings.concat(adminTaxes, ' %')}">A</td>
-            </tr>
-            </tbody>
-        </table>
+    <div id="products-list">
+        <div class="pl-5 block">
+            <h3 class="title is-3">Produtos</h3>
+            <p class="subtitle is-5" th:text="${#strings.concat(#lists.size(products), ' produtos econtrados')}"></p>
+        </div>
+        <div class="box">
+            <table class="table is-striped is-fullwidth">
+                <thead class="">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Destinação</th>
+                    <th scope="col">Rent. Anual</th>
+                    <th scope="col">Período mínimo</th>
+                    <th scope="col">Taxa Admin</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <th scope="row" th:text="${product.id}">A</th>
+                    <td th:text="${product.name}">A</td>
+                    <td th:text="${product.status}">A</td>
+                    <td th:text="${product.destination}">A</td>
+                    <td th:text="${#strings.concat(anualRent, ' %')}"
+                        th:with="anualRent=${#numbers.formatDecimal(product.anualRentability * 100, 1, 'POINT', 2, 'COMMA')}">
+                        A
+                    </td>
+                    <td th:text="${#strings.concat(product.minimalMonths, ' meses')}">A</td>
+                    <td th:text="${#strings.concat(adminTaxes, ' %')}"
+                        th:with="adminTaxes=${#numbers.formatDecimal(product.administrativeTaxes * 100, 1, 'POINT', 2, 'COMMA')}">
+                        A
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </body>

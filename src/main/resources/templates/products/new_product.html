@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base_layout :: base_html_head('Criar novo produto', _)}">
+    <meta charset="UTF-8">
+</head>
+<body class="has-background-light">
+<header th:replace="~{base_layout :: base_header}"></header>
+<div th:insert="~{base_layout :: content(~{ :: #new-product-form})}">
+    <div class="" id="new-product-form">
+        <div class="pl-5 block"><h3 class="title is-3">Criar novo Produto</h3></div>
+        <div class="box">
+            <form method="post" th:action="@{/products/new}" th:object="${newProduct}">
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="product_name">Nome</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input"
+                                       id="product_name"
+                                       placeholder="CDB Pós fixado..."
+                                       th:field="*{name}"
+                                       type="text"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label" for="product_destination">Descrição</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <textarea class="input"
+                                          id="product_destination"
+                                          placeholder="Explique a destinação deste produto de investimento"
+
+                                          th:field="*{destination}"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="product_rentability">Rentabilidade anual</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input"
+                                       id="product_rentability"
+                                       min="0"
+                                       step="0.1"
+                                       th:field="*{anualRentability}"
+                                       type="number"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="product_months">Nome</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input"
+                                       id="product_months"
+                                       max="48"
+                                       min="0"
+                                       step="1"
+                                       th:field="*{minimalMonths}"
+                                       type="number"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="product_taxes">Nome</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input"
+                                       id="product_taxes"
+                                       max="100"
+                                       min="0"
+                                       step="0.1"
+                                       th:field="*{administrativeTaxes}"
+                                       type="number"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary" type="submit">
+                                    Criar produto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

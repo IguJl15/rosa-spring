@@ -4,6 +4,7 @@ import com.nebraska.hello_world.entities.InvestmentProduct
 import com.nebraska.hello_world.repositories.ProductsRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
+import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
@@ -26,8 +27,17 @@ class ProductsController(
         return "products/products_list"
     }
 
-    @PostMapping(value = ["/", ""])
-    fun new(@ModelAttribute newProduct: InvestmentProduct): String {
+    @GetMapping("/new")
+    fun newProductPage(model: Model): String {
+        if (!model.containsAttribute("newProduct")) {
+            model["newProduct"] = InvestmentProduct()
+        }
+
+        return "products/new_product"
+    }
+
+    @PostMapping("/new")
+    fun createNewProject(@ModelAttribute newProduct: InvestmentProduct): String {
         // TODO: turn properties into variables to clean up code
         repository.save(
             newProduct.copy(
