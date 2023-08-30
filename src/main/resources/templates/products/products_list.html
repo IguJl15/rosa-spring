@@ -11,45 +11,13 @@
 <header th:replace="~{base_layout :: base_header}">
 
 </header>
-
-<div th:insert="~{base_layout :: content(~{ :: #products-list}) }">
-    <div id="products-list">
+<div th:insert="~{base_layout :: content(~{ :: #products-cards}) }">
+    <div id="products-cards">
         <div class="pl-5 block">
             <h3 class="title is-3">Produtos</h3>
             <p class="subtitle is-5" th:text="${#strings.concat(#lists.size(products), ' produtos econtrados')}"></p>
         </div>
-        <div class="box">
-            <table class="table is-striped is-fullwidth">
-                <thead class="">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Destinação</th>
-                    <th scope="col">Rent. Anual</th>
-                    <th scope="col">Período mínimo</th>
-                    <th scope="col">Taxa Admin</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="product : ${products}">
-                    <th scope="row" th:text="${product.id}">A</th>
-                    <td th:text="${product.name}">A</td>
-                    <td th:text="${product.status}">A</td>
-                    <td th:text="${product.destination}">A</td>
-                    <td th:text="${#strings.concat(anualRent, ' %')}"
-                        th:with="anualRent=${#numbers.formatDecimal(product.anualRentability * 100, 1, 'POINT', 2, 'COMMA')}">
-                        A
-                    </td>
-                    <td th:text="${#strings.concat(product.minimalMonths, ' meses')}">A</td>
-                    <td th:text="${#strings.concat(adminTaxes, ' %')}"
-                        th:with="adminTaxes=${#numbers.formatDecimal(product.administrativeTaxes * 100, 1, 'POINT', 2, 'COMMA')}">
-                        A
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <div style="margin-bottom: 0.5rem" th:each="product : ${products}" th:insert="~{products/fragments/product_card :: product_card(product)}"></div>
     </div>
 </div>
 </body>

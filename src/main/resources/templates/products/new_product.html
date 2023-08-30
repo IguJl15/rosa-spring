@@ -6,11 +6,10 @@
 <body class="has-background-light">
 <header th:replace="~{base_layout :: base_header}"></header>
 <div th:insert="~{base_layout :: content(~{ :: #new-product-form})}">
-    <div class="" id="new-product-form">
+    <div id="new-product-form">
         <div class="pl-5 block"><h3 class="title is-3">Criar novo Produto</h3></div>
         <div class="box">
             <form method="post" th:action="@{/products/new}" th:object="${newProduct}">
-
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label" for="product_name">Nome</label>
@@ -36,10 +35,10 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <textarea class="input"
+                                <textarea class="textarea"
                                           id="product_destination"
                                           placeholder="Explique a destinação deste produto de investimento"
-
+                                          rows="4"
                                           th:field="*{destination}"
                                 ></textarea>
                             </div>

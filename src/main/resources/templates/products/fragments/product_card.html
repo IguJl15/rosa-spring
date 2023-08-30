@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" th:fragment="product_card(product)">
+    <div class="card-content">
+        <p class="subtitle is-6">CDB</p>
+        <p class="title is-5" th:text="${product.name}"></p>
+
+        <div class="is-flex is-justify-content-space-between">
+            <span>Rentabilidade</span>
+            <span th:text="${#strings.concat(product.anualRentability, ' %')}"></span>
+        </div>
+        <div class="is-flex is-justify-content-space-between">
+            <span>Resgate</span>
+            <span th:text="${#strings.concat(product.minimalMonths, ' meses')}"></span>
+        </div>
+        <div class="is-flex is-justify-content-space-between">
+            <span>Taxas</span>
+            <span th:text="${#strings.concat(product.administrativeTaxes, ' %')}"></span>
+        </div>
+    </div>
+    <footer class="card-footer ">
+            <a href="#" th:href="@{products/details/{id}(id=${product.id})}" class="card-footer-item is-uppercase is-justify-content-flex-end">Detalhes</a>
+    </footer>
+</div>
+</body>
+</html>
