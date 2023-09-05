@@ -9,7 +9,7 @@
     <div id="new-product-form">
         <div class="pl-5 block"><h3 class="title is-3">Criar novo Produto</h3></div>
         <div class="box">
-            <form method="post" th:action="@{/products/new}" th:object="${newProduct}">
+            <form method="post" th:action="@{/products/new}" th:object="${createProductDto}">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label" for="product_name">Nome</label>
@@ -24,6 +24,7 @@
                                        type="text"
                                 />
                             </div>
+                            <p class="help is-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></p>
                         </div>
                     </div>
                 </div>
@@ -42,6 +43,8 @@
                                           th:field="*{destination}"
                                 ></textarea>
                             </div>
+                            <p class="help is-danger" th:errors="*{destination}"
+                               th:if="${#fields.hasErrors('destination')}"></p>
                         </div>
                     </div>
                 </div>
@@ -52,22 +55,25 @@
                     </div>
                     <div class="field-body">
                         <div class="field">
-                            <div class="control">
+                            <div class="control has-icons-left">
                                 <input class="input"
                                        id="product_rentability"
-                                       min="0"
-                                       step="0.1"
                                        th:field="*{anualRentability}"
                                        type="number"
                                 />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope fa-xs"></i>
+                                </span>
                             </div>
+                            <p class="help is-danger" th:errors="*{anualRentability}"
+                               th:if="${#fields.hasErrors('anualRentability')}"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label" for="product_months">Nome</label>
+                        <label class="label" for="product_months">Tempo mínimo de aplicação</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -81,13 +87,15 @@
                                        type="number"
                                 />
                             </div>
+                            <p class="help is-danger" th:errors="*{minimalMonths}"
+                               th:if="${#fields.hasErrors('minimalMonths')}"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label" for="product_taxes">Nome</label>
+                        <label class="label" for="product_taxes">Taxas</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -101,6 +109,8 @@
                                        type="number"
                                 />
                             </div>
+                            <p class="help is-danger" th:errors="*{administrativeTaxes}"
+                               th:if="${#fields.hasErrors('administrativeTaxes')}"></p>
                         </div>
                     </div>
                 </div>
@@ -117,6 +127,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <ul>
+                        <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+                    </ul>
                 </div>
             </form>
         </div>

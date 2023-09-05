@@ -1,4 +1,4 @@
-package com.nebraska.hello_world.controllers
+package com.nebraska.hello_world.web.controllers
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,5 +18,6 @@ class IndexController {
 @RequestMapping("/status")
 class StatusController {
     @GetMapping(value = ["/", ""])
-    fun status(): Unit {}
+    fun status() {
+    }
 }

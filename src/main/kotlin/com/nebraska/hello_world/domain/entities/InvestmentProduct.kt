@@ -1,4 +1,4 @@
-package com.nebraska.hello_world.entities
+package com.nebraska.hello_world.domain.entities
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 
 
-/// Nome até 32 caracteres    | 	Status: 'Disponível' ou 'Indisponível'
+/// Nome até 32 caracteres | Status: 'Disponível' ou 'Indisponível'
 /// Destinação até 180 caracteres
 /// Taxa Rentabilidade a.a. (%): inteiro entre 1% e 20%, sem decimais
 /// Prazo mínimo para Realização (meses): 0 a 48 meses, qualquer valor.
