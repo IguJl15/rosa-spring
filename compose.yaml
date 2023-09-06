@@ -8,3 +8,19 @@
 #      - POSTGRESQL_POSTGRES_PASSWORD=postgres
 #    ports:
 #      - 5432:5432
+#  backend:
+#    build:
+#      dockerfile: ./Dockerfile
+#      args:
+#        - JAR_FILE=build/libs/*.jar
+#    environment:
+#      - DB_HOST=postgres
+#      - DB_NAME=rosa_db
+#      - DB_USERNAME=postgres
+#      - DB_PASSWORD=postgres
+#    ports:
+#      - 8080:8080
+#    links:
+#      - postgres
+#    depends_on:
+#      - postgres
