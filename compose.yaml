@@ -8,6 +8,7 @@
 #      - POSTGRESQL_POSTGRES_PASSWORD=postgres
 #    ports:
 #      - 5432:5432
+# SPRING INSTANCE
 #  backend:
 #    build:
 #      dockerfile: ./Dockerfile
