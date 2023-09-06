@@ -1,6 +1,20 @@
 FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
-#COPY .env .env
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+WORKDIR /app
+
+COPY build.gradle .
+COPY settings.gradle .
+COPY gradle gradle
+
+COPY gradlew .
+COPY gradle/wrapper/gradle-wrapper.properties ./gradle/wrapper/
+
+RUN chmod +x gradlew
+
+COPY src src
+
+RUN ./gradlew bootJar
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "build/libs/hello_world-0.0.1.jar"]
