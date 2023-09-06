@@ -11,7 +11,7 @@ import jakarta.persistence.Id
 /// Taxa Rentabilidade a.a. (%): inteiro entre 1% e 20%, sem decimais
 /// Prazo mínimo para Realização (meses): 0 a 48 meses, qualquer valor.
 /// Taxa de Administração (%): Quanto do ganho a ROSA fica? 
-@Entity()
+@Entity
 data class InvestmentProduct(
     @Id
     @GeneratedValue
@@ -21,7 +21,7 @@ data class InvestmentProduct(
     val name: String = "",
 
     @Column(nullable = false)
-    val status: ProductStatus = ProductStatus.available,
+    val status: ProductStatus = ProductStatus.Available,
 
     @Column(nullable = false)
     val destination: String = "",
@@ -37,6 +37,6 @@ data class InvestmentProduct(
 )
 
 enum class ProductStatus {
-    available,
-    unavailable
+    Available,
+    Unavailable
 }

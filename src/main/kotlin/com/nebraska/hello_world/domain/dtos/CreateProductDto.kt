@@ -1,41 +1,42 @@
 package com.nebraska.hello_world.domain.dtos
 
+
 import com.nebraska.hello_world.domain.entities.InvestmentProduct
 import com.nebraska.hello_world.domain.entities.ProductStatus
 import jakarta.validation.constraints.*
 
-class CreateProductDto {
+open class CreateProductDto {
     @Size(max = 32)
     @NotBlank
-    val name: String = ""
+    var name: String? = null
 
-    @Max(180)
+    @Size(max = 180)
     @NotBlank
-    val destination: String = ""
+    var destination: String? = null
 
     @NotNull
     @Min(1)
     @Max(20)
-    var anualRentability: Int = 0
+    var anualRentability: Int? = null
 
     @NotNull
     @PositiveOrZero
     @Max(48)
-    val minimalMonths: Int = 0
+    var minimalMonths: Int? = null
 
     @PositiveOrZero
-    @Max(1)
+    @Max(100)
     @NotNull
-    var administrativeTaxes: Int = 0
+    var administrativeTaxes: Int? = null
 
-    fun toProductEntity(): InvestmentProduct = InvestmentProduct(
+    open fun toProductEntity(): InvestmentProduct = InvestmentProduct(
         null,
-        name,
-        ProductStatus.available,
-        destination,
-        anualRentability / 100.0,
-        minimalMonths,
-        administrativeTaxes / 100.0
+        name!!,
+        ProductStatus.Available,
+        destination!!,
+        anualRentability!! / 100.0,
+        minimalMonths!!,
+        administrativeTaxes!! / 100.0
     )
 
 }
