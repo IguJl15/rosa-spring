@@ -1,6 +1,5 @@
 package com.nebraska.hello_world.config
 
-import io.github.cdimascio.dotenv.dotenv
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
@@ -11,23 +10,24 @@ import javax.sql.DataSource
 @Configuration
 @ConfigurationProperties("spring.datasource")
 class JpaConfig {
-    val dotEnv = dotenv()
+    val dbHostEnv = "DB_HOST"
+    val dbNameEnv = "DB_NAME"
+    val dbUsernameEnv = "DB_USERNAME"
+    val dbPasswordEnv = "DB_PASSWORD"
 
     @Bean
     @Primary
     fun getDataSource(): DataSource {
+        val host = System.getenv(dbHostEnv) ?: "localhost"
+        val dbName = System.getenv(dbNameEnv) ?: "rosa_db"
+        val username = System.getenv(dbUsernameEnv) ?: "postgres"
+        val password = System.getenv(dbPasswordEnv) ?: "postgres"
+
         return DataSourceBuilder.create()
             .driverClassName("org.postgresql.Driver")
-            .url(getDataSourceUrl())
-            .username(dotEnv.get("DB_USERNAME"))
-            .password(dotEnv.get("DB_PASSWORD"))
+            .url("jdbc:postgresql://$host/$dbName")
+            .username(username)
+            .password(password)
             .build()
-    }
-
-    private fun getDataSourceUrl(): String {
-        val host = dotEnv.get("DB_HOST")
-        val dbName = dotEnv.get("DB_NAME")
-
-        return "jdbc:postgresql://$host/$dbName"
     }
 }
