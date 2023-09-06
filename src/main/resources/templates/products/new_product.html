@@ -2,6 +2,7 @@
 <html lang="en">
 <head th:replace="~{base_layout :: base_html_head('Criar novo produto', _)}">
     <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body class="has-background-light">
 <header th:replace="~{base_layout :: base_header}"></header>
@@ -58,11 +59,14 @@
                             <div class="control has-icons-left">
                                 <input class="input"
                                        id="product_rentability"
+                                       max="100"
+                                       min="0"
+                                       step="1"
                                        th:field="*{anualRentability}"
                                        type="number"
                                 />
                                 <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope fa-xs"></i>
+                                    <i class="fas fa-percentage fa-xs"></i>
                                 </span>
                             </div>
                             <p class="help is-danger" th:errors="*{anualRentability}"
